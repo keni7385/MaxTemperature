@@ -7,12 +7,14 @@ import org.apache.hadoop.mapreduce.Mapper;
 public class MaxTemperatureMapper 
   extends Mapper<LongWritble, Text, Text, IntWritable> {
     
+    private NcdcRecordParser parser = new NcdcRecordParser();
+
     @Override
     public void map(LongWritble key, Text value, Context context)
       throws IOException, InterruptedException {
-          String line = value.toString();
-          String year = line.substring(15, 19);
-          int airTemperature = Integer.parseInt(line.substring(87, 92));
-          context.write(new Text(year), new IntWritable(airTemperature));
+          parser.parse(value);
+          if(parser.isValidTemperature()) {
+            context.write(new Text(parser.getYear()), new IntWritable(parser.getAirTemperature()));
+          }
     }
 }
