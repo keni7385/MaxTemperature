@@ -1,38 +1,20 @@
 package net.azurewebsites.keni;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.*;
+import java.IOException;
+import org.apache.hadoop.io.*;
+import org.apache.mrunit.mapreduce.MapDriver;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+public class MaxTemperatureTest {
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+    @Test
+    public void processValidRecord() throws IOException, InterruptedException {
+        Text value = new Text("...");
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+        new MapDriver<LongWritable, Text, Text, IntWritable>()
+            .withMapper(new MaxTemperatureMapper())
+            .withInput(new LongWritable(0), value)
+            .withOutput(new Text("1950"), new IntWritable(-11))
+            .runTest();
     }
 }
