@@ -4,6 +4,7 @@ import org.junit.*;
 import java.IOException;
 import org.apache.hadoop.io.*;
 import org.apache.mrunit.mapreduce.MapDriver;
+import org.apache.mrunit.mapreduce.ReduceDriver;
 
 public class MaxTemperatureTest {
 
@@ -30,4 +31,15 @@ public class MaxTemperatureTest {
             // asserts no output is produced
             .runTest();
     }
+
+    @Test
+    public void returnsMaximumIntegerInValues() throws IOException, InterruptedException {
+        new ReduceDriver<Text, IntWritable, Text, IntWritable>()
+            .withReducer(new MaxTemperatureReducer())
+            .withInput(new Text("1950"), Arrays.asList(new IntWritable(10), new IntWritable(5)))
+            .withOutput(new Text("1950"), new IntWritable(10))
+            .runTest();
+    }
+
+
 }
