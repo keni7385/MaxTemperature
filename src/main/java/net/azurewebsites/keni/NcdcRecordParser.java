@@ -2,7 +2,7 @@ package net.azurewebsites.keni;
 
 import org.apache.hadoop.io.Text;
 
-public class NcdcRecordParser.java {
+public class NcdcRecordParser {
     private static final int MISSING_TEMPERATURE = 9999;
 
     private String year;

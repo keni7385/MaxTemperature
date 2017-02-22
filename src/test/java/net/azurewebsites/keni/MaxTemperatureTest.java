@@ -1,10 +1,11 @@
 package net.azurewebsites.keni;
 
 import org.junit.*;
-import java.IOException;
+import java.io.IOException;
+import java.util.Arrays;
 import org.apache.hadoop.io.*;
-import org.apache.mrunit.mapreduce.MapDriver;
-import org.apache.mrunit.mapreduce.ReduceDriver;
+import org.apache.hadoop.mrunit.mapreduce.MapDriver;
+import org.apache.hadoop.mrunit.mapreduce.ReduceDriver;
 
 public class MaxTemperatureTest {
 

@@ -1,10 +1,10 @@
 package net.azurewebsites.keni;
 
-import java.IOException;
+import java.io.IOException;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public class MaxTemperatureReduce
+public class MaxTemperatureReducer
   extends Reducer<Text, IntWritable, Text, IntWritable> {
 
       @Override
