@@ -11,7 +11,7 @@ public class MaxTemperatureTest {
 
     @Test
     public void processValidRecord() throws IOException, InterruptedException {
-        Text value = new Text("004301199099991950051518004+68750+023550FM-12+0382" +
+        Text value = new Text("0043011990999991950051518004+68750+023550FM-12+0382" +
                               "99999V0203201N00261220001CN9999999N9-00111+99999999999");
 
         new MapDriver<LongWritable, Text, Text, IntWritable>()
@@ -23,7 +23,7 @@ public class MaxTemperatureTest {
 
     @Test
     public void ignoreMissingTemperatureRecord() throws IOException, InterruptedException {
-        Text value = new Text("004301199099991950051518004+68750+023550FM-12+0382" +
+        Text value = new Text("0043011990999991950051518004+68750+023550FM-12+0382" +
                               "99999V0203201N00261220001CN9999999N9-99991+99999999999");
         
         new MapDriver<LongWritable, Text, Text, IntWritable>()
